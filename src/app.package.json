@@ -1,0 +1,10 @@
+{
+    "main": "index.html",
+    "version": "0.0.1",
+    "name": "x-note",
+    "window": {
+        "width": 900,
+        "height": 600,
+        "toolbar": true
+    }
+}

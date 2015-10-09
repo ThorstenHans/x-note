@@ -1,0 +1,20 @@
+{
+  "name": "x-note",
+  "version": "0.0.0",
+  "authors": [
+    "Thorsten Hans <thorsten.hans@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.7",
+    "angular-material": "~0.11.2",
+    "angular-material-icons": "~0.6.0"
+  }
+}

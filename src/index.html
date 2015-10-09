@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>x-note</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- inject:css -->
+    <!-- endinject -->
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+</head>
+<body ng-app="xnote" ng-controller="mainController as main">
+    <md-content>
+    <md-toolbar>
+    <div class="md-toolbar-tools">
+        <h2>
+        <span>xNote</span>
+        </h2>
+        <span flex></span>
+         <md-button ng-click="main.import()">Import</md-button>
+          <md-button ng-click="main.export()">Export</md-button>
+        
+    </div>
+    </md-toolbar>
+    <div layout="row" layout-align="center center">
+        <div flex="80">
+            <div layout layout-sm="column">
+                <md-input-container flex>
+                <label>Title</label>
+                <input ng-model="main.currentNote.title">
+                </md-input-container>
+                <md-input-container flex>
+                <label>Category</label>
+                <input ng-model="main.currentNote.category">
+                </md-input-container>
+            </div>
+            <md-input-container flex>
+            <label>Content</label>
+            <textarea ng-model="main.currentNote.content" columns="1" md-maxlength="1500"></textarea>
+            </md-input-container>
+            <div layout="row" layout-align="end center">
+                <md-button ng-click="main.save()" class="md-raised md-primary">Save new Note</md-button>
+                <md-button ng-click="main.cancel()" class="md-raised md-warn">Cancel</md-button>
+            </div>
+        </div>
+    </div>
+    <div layout="row" layout-wrap layout-align="center">
+        <md-card ng-repeat="note in main.notes" flex-sm="90" flex-gt-md="30" flex-md="45">
+        <md-card-content>
+        <h2 class="md-title" ng-bind="note.title"></h2>
+        <p><span ng-bind="note.content | limitTo: 255" class="note-content"></span><span ng-if="note.content && note.content.length>255">...</span></p>
+        <md-chips>
+        <md-chip ng-hide="!note.category" ng-bind="note.category"></md-chip>
+        </md-chips>
+        </md-card-content>
+        <div class="md-actions" layout="row" layout-align="end center">
+            <md-button class="md-primary" ng-click="main.editNote(note)">Edit Note</md-button>
+            <md-button class="md-warn" ng-click="main.deleteNote(note)">Delete Note</md-button>
+        </div>
+        </md-card>
+    </div>
+    </md-content>
+    <!-- inject:js -->
+    <!-- endinject -->
+</body>
+</html>
