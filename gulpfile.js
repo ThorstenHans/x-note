@@ -4,26 +4,21 @@ var gulp = require('gulp'),
     inject = require('gulp-inject'),
     cssmin = require('gulp-cssmin'),
     ngAnnotate = require('gulp-ng-annotate'),
-    NwBuilder = require('nw-builder'),
     ngTemplateCache = require('gulp-angular-templatecache'),
     rename = require('gulp-rename'),
     shelljs = require('shelljs'),
+    uglify = require('gulp-uglify'),
     inSequence = require('run-sequence');
 
 gulp.task('watch', function(){
     return gulp.watch('src/**/*', ['build']);
 });
 
-gulp.task('build:nw', function(){
-    var nw = new NwBuilder({
-        files: 'dist/**/*',
-        version: '0.12.3',
-        platforms: ['osx64', 'win64']
-    });
-
-    nw.build();
+gulp.task('default', function(done){
+    inSequence('private:build', done);
 });
-gulp.task('build', function(){
+
+gulp.task('private:build', function(){
     inSequence(
         'private:clean',
         'private:app:templates',
@@ -61,6 +56,7 @@ gulp.task('private:app:js', function(){
     ])
     .pipe(ngAnnotate())
     .pipe(concat('app.js'))
+    .pipe(uglify())
     .pipe(gulp.dest('dist/scripts'))
 });
 
@@ -77,6 +73,7 @@ gulp.task('private:app:html', function(){
         'dist/scripts/vendor.min.js',
         'dist/scripts/app.js'
         ]);
+
     return gulp.src('src/index.html')
         .pipe(inject(sources, {
             addRootSlash: false,
@@ -85,6 +82,7 @@ gulp.task('private:app:html', function(){
         }))
         .pipe(gulp.dest('dist'));
 });
+
 gulp.task('private:clean', function(done){
     del.sync(['dist/**/*', '.temp/**/*'], {force:true});
     done();
