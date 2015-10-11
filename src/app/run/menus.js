@@ -2,7 +2,7 @@
     'use strict';
 
     function ConfigureMenus(runtimeService){
-        if(runtimeService.isOsx()){
+        if(runtimeService.isNwJsApp() && runtimeService.isOsx()){
             var gui = require('nw.gui');
             var mb = new gui.Menu({type:"menubar"});
             mb.createMacBuiltin("x-Note");

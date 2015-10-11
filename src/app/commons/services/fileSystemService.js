@@ -1,7 +1,7 @@
 (function(jQuery, $){
     'use strict';
 
-        function FileSystemService($q){
+        function DesktopFileSystemService(){
             var fs = require('fs'),
                 gui = require('nw.gui'),
                 path = require('path');
@@ -12,11 +12,42 @@
             };
 
             this.load = function(){
-                return JSON.parse(fs.readFileSync(path.join(gui.App.dataPath, "data.json")));
+                var fullPath = path.join(gui.App.dataPath, "data.json");
+                var data = [];
+                try{
+                    data = JSON.parse(fs.readFileSync(fullPath));
+                }catch (error){
+                    // data file not present
+                }
+                return data;
+            };
+        }
+
+        
+
+        function WebFileSystemService($window){
+
+            this.save = function(notes){
+                $window.localStorage.setItem('xnotes::allNotes', JSON.stringify(notes));
+            };
+
+            this.load = function(){
+                var storageValue = $window.localStorage.getItem('xnotes::allNotes');
+                if(!storageValue) { 
+                    return [];
+                }
+                return JSON.parse(storageValue);
             };
 
         }
 
-        angular.module('xnote').service('fileSystemService', FileSystemService);
+        function FileSystemServiceFactory($injector, runtimeService){
+            if(runtimeService.isNwJsApp()){
+                return $injector.instantiate(DesktopFileSystemService);
+            }else{
+                return $injector.instantiate(WebFileSystemService);
+            }
+        }
+        angular.module('xnote').factory('fileSystemService', FileSystemServiceFactory);
     
 })();

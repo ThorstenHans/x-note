@@ -1,5 +1,6 @@
 cache/
 build/
 dist/
+.temp/
 bower_components/
 node_modules/

@@ -1,0 +1,21 @@
+<div layout="row" layout-align="center center">
+        <div flex="80">
+            <div layout layout-sm="column">
+                <md-input-container flex>
+                <label>Title</label>
+                <input ng-model="editor.item.title">
+                </md-input-container>
+                <md-input-container flex>
+                <label>Category</label>
+                <input ng-model="editor.item.category">
+                </md-input-container>
+            </div>
+            <md-input-container flex>
+            <label>Content</label>
+            <textarea ng-model="editor.item.content" columns="1" md-maxlength="1500"></textarea>
+            </md-input-container>
+            <div layout="row" layout-align="end center">
+                <md-button ng-click="editor.finish()" class="md-raised md-primary">Done</md-button>
+            </div>
+        </div>
+    </div>

@@ -5,6 +5,7 @@ var gulp = require('gulp'),
     cssmin = require('gulp-cssmin'),
     ngAnnotate = require('gulp-ng-annotate'),
     NwBuilder = require('nw-builder'),
+    ngTemplateCache = require('gulp-angular-templatecache'),
     rename = require('gulp-rename'),
     shelljs = require('shelljs'),
     inSequence = require('run-sequence');
@@ -25,6 +26,7 @@ gulp.task('build:nw', function(){
 gulp.task('build', function(){
     inSequence(
         'private:clean',
+        'private:app:templates',
         [
             'private:vendor:css',
             'private:vendor:js',
@@ -42,10 +44,20 @@ gulp.task('private:app:package', function(){
         .pipe(gulp.dest('dist'));
 });
 
+gulp.task('private:app:templates', function(){
+    return gulp.src('src/app/**/*.html')
+        .pipe(ngTemplateCache({
+            module: "xnote",
+            filename: 'templates.js'
+            }))
+        .pipe(gulp.dest('.temp'));
+});
+
 gulp.task('private:app:js', function(){
     return gulp.src([
         'src/app/app.js',
-        'src/app/**/*.js'
+        'src/app/**/*.js',
+        '.temp/templates.js'
     ])
     .pipe(ngAnnotate())
     .pipe(concat('app.js'))
@@ -74,7 +86,7 @@ gulp.task('private:app:html', function(){
         .pipe(gulp.dest('dist'));
 });
 gulp.task('private:clean', function(done){
-    del.sync('dist/**/*', {force:true});
+    del.sync(['dist/**/*', '.temp/**/*'], {force:true});
     done();
 });
 

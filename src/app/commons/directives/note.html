@@ -1,0 +1,14 @@
+<md-card flex-sm="90" flex-gt-md="30" flex-md="45">
+    <md-card-content>
+        <h2 class="md-title" ng-bind="nd.item.title"></h2>
+        <p><span ng-bind="nd.item.content | limitTo: 255" class="nd-content"></span>
+        <span ng-if="nd.item.content && nd.item.content.length>255">...</span></p>
+        <md-chips>
+            <md-chip ng-hide="!nd.item.category" ng-bind="nd.item.category"></md-chip>
+        </md-chips>
+    </md-card-content>
+    <div class="md-actions" layout="row" layout-align="end center">
+        <md-button class="md-primary" ng-click="nd.edit({item: nd.item})">Edit Note</md-button>
+        <md-button class="md-warn" ng-click="nd.remove({item: nd.item})">Delete Note</md-button>
+    </div>
+</md-card>
