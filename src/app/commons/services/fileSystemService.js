@@ -40,6 +40,7 @@
             };
 
         }
+        WebFileSystemService.$inject = ['$window'];
 
         function FileSystemServiceFactory($injector, runtimeService){
             if(runtimeService.isNwJsApp()){

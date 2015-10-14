@@ -7,6 +7,8 @@
         viewModel.currentNote = getEmpty();
         viewModel.notes = [];
         viewModel.filterTerm = '';
+        
+
 
         viewModel.update = function(){
             if(viewModel.currentNote.hasOwnProperty('isNew')){

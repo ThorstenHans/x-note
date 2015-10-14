@@ -24,9 +24,10 @@
         <md-button href="https://github.com/ThorstenHans/x-note" target="_blank">Browse Source Code</md-button>
     </div>
     </md-toolbar>
+
     <edit-note item="main.currentNote" on-finished="main.update()"></edit-note>
     <div layout="row" layout-wrap layout-align="center">
-        <note ng-repeat="n in main.notes" item="n" on-edit="main.editNote(n)" on-remove="main.deleteNote(n)"></note>
+        <note ng-repeat="n in main.notes" item="n" on-edit="main.editNote(n)" on-remove="main.deleteNote(n)" flex-sm="90" flex-gt-md="30" flex-md="45"></note>
     </div>
     </md-content>
     <!-- inject:js -->
