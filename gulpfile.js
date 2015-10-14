@@ -10,6 +10,7 @@ var tasks = {
     rename: require('gulp-rename'),
     shelljs: require('shelljs'),
     uglify: require('gulp-uglify'),
+    NwBuilder: require('nw-builder'),
     inSequence: require('run-sequence')
 };
 
