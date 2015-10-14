@@ -18,13 +18,21 @@ var customGulpTasks = require('require-dir')('./gulptasks');
 for (var gulpTask in customGulpTasks) {
     customGulpTasks[gulpTask].init(gulp, tasks);
 }
-
-
-gulp.task('watch', function(){
-    return gulp.watch('src/**/*', ['build']);
+gulp.task('default', function(done) {
+    tasks.inSequence('private:build', function() {
+        return gulp.watch('src/**/*', ['private:build']);
+    });
 });
 
-gulp.task('default', function(done){
-    tasks.inSequence('private:build', done);
+gulp.task('help', function() {
+    console.log('Execute one of the following commands\n');
+    for (var gulpTask in customGulpTasks) {
+        if (!customGulpTasks[gulpTask].hasOwnProperty('docs')) {
+            continue;
+        }
+        customGulpTasks[gulpTask].docs.map(function(doc) {
+            console.log("gulp " + doc.task + " - (" + doc.description + ")");
+        });
+    }
+    console.log('\n');
 });
-

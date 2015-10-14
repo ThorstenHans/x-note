@@ -22,7 +22,7 @@
                 .pipe(tasks.ngAnnotate())
                 .pipe(tasks.concat('app.js'))
                 .pipe(tasks.uglify())
-                .pipe(gulp.dest('dist/scripts'))
+                .pipe(gulp.dest('dist/scripts'));
         });
 
         gulp.task('private:app:css', function() {

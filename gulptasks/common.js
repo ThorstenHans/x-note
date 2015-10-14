@@ -27,9 +27,13 @@
 
     module.exports = {
         init: RegisterTasks,
-        doc: function() {
-
-        }
+        docs: [{
+            task: 'watch',
+            description: 'Starts the watcher'
+        }, {
+            task: 'default',
+            description: 'Starts a onetime build'
+        }]
     };
 
 })(module);
