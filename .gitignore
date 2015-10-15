@@ -4,3 +4,4 @@ dist/
 .temp/
 bower_components/
 node_modules/
+desktop-build
