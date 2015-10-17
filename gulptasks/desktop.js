@@ -7,7 +7,6 @@
             tasks.inSequence('private:build', 'private:app:package', 'private:build:nw', done);
         });
 
-
         gulp.task('private:build:nw', function(done) {
 
             var homeDir = process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE;
@@ -18,12 +17,12 @@
                 version: '0.12.3',
                 platforms: ['win32', 'win64', 'osx64', 'linux32', 'linux64'],
                 macIcns: 'assets/x-note.icns',
-                winIco: 'assets/x-note.ico'
+                winIco: 'assets/x-note.ico',
+                macZip: false
                 // uncomment the previous row if you're buiding the app on windows or if you've followed this guide
                 // https://github.com/nwjs/nw.js/wiki/Icons
                 
             });
-
             nw.build();
             done();
         });
