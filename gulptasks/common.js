@@ -3,7 +3,7 @@
 
     function RegisterTasks(gulp, tasks) {
 
-        gulp.task('private:build', function() {
+        gulp.task('private:build', function(done) {
             tasks.inSequence(
                 'private:clean',
                 'private:app:templates', [
@@ -13,7 +13,8 @@
                     'private:app:js',
                     'private:app:package'
                 ],
-                'private:app:html'
+                'private:app:html',
+                done
             );
         });
 
