@@ -20,6 +20,7 @@ var customGulpTasks = require('require-dir')('./gulptasks');
 for (var gulpTask in customGulpTasks) {
     customGulpTasks[gulpTask].init(gulp, tasks);
 }
+
 gulp.task('default', function(done) {
     tasks.inSequence('private:build', function() {
         return gulp.watch('src/**/*', ['private:build']);
