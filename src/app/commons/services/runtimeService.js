@@ -3,11 +3,15 @@
 
     function RuntimeService(){
         this.isNwJsApp = function(){
-            return typeof(process) !== "undefined" && angular.isDefined(process.versions) && process.versions.hasOwnProperty('node-webkit');
+            return typeof(process) !== "undefined" && 
+                angular.isDefined(process.versions) && 
+                process.versions.hasOwnProperty('node-webkit');
         };
 
         this.isOsx = function(){
-            return typeof(process) !== "undefined" && angular.isDefined(process.platform) && process.platform.match(/(arwin)/g);
+            return typeof(process) !== "undefined" && 
+                angular.isDefined(process.platform) && 
+                process.platform.match(/(arwin)/g);
         };
     }
     
