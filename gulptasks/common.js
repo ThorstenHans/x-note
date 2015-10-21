@@ -10,8 +10,7 @@
                     'private:vendor:css',
                     'private:vendor:js',
                     'private:app:css',
-                    'private:app:js',
-                    'private:app:package'
+                    'private:app:js'
                 ],
                 'private:app:html',
                 done
