@@ -24,6 +24,20 @@
             });
             done();
         });
+
+        gulp.task('build', ['private:build'], function(done){
+            done();
+        });
+
+        gulp.task('default', ['help'], function(done){
+            done();
+        });
+
+        gulp.task('watch', function(done) {
+            tasks.inSequence('private:build', function() {
+                return gulp.watch('src/**/*', ['private:build']);
+            });
+        });
     }
 
     module.exports = {
@@ -31,9 +45,14 @@
         docs: [{
             task: 'watch',
             description: 'Starts the watcher'
-        }, {
+        }, 
+        {
+            task: 'build',
+            description: 'creates a plain web build without watching'
+        },
+        {
             task: 'default',
-            description: 'Starts a onetime build'
+            description: 'prints this help'
         }]
     };
 

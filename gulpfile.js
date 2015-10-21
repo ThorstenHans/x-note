@@ -21,12 +21,6 @@ for (var gulpTask in customGulpTasks) {
     customGulpTasks[gulpTask].init(gulp, tasks);
 }
 
-gulp.task('default', function(done) {
-    tasks.inSequence('private:build', function() {
-        return gulp.watch('src/**/*', ['private:build']);
-    });
-});
-
 gulp.task('help', function() {
     console.log('Execute one of the following commands\n');
     for (var gulpTask in customGulpTasks) {
