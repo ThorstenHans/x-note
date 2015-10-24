@@ -1,7 +1,14 @@
-require('xplatform-build')({
-    options: {
-        cordova: {
-            runCommands: ['cordova run ios', 'cordova run android']
+(function(require){
+    'use strict';
+    var userConfig = {
+        addOns: {
+            "gulp-less" : {}
+        },
+        sources: {
+            appStyles : ['src/styles/**.less']
         }
-    }
-});
+    };
+    
+    require('xplatform-build')(userConfig);
+
+})(require);
