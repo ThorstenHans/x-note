@@ -11,6 +11,7 @@ after cloning the repo execute
 ```
 $ npm install
 $ bower install
+$ npm run dev
 ```
 
 to download all depnendencies
