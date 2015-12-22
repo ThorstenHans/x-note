@@ -6,6 +6,7 @@
   "scripts": {
     "test": "./node_modules/.bin/gulp test",
     "dev": "./node_modules/.bin/live-server dist"
+    "build": "./node_modules/.bin/gulp build"
   },
   "author": "Thorsten Hans <thorsten.hans@gmail.com> (http://www.xplatform.rocks)",
   "license": "MIT",
