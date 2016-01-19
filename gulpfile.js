@@ -18,6 +18,16 @@ gulp.task('build-app-css', function() {
         .pipe(gulp.dest('dist/styles'));
 });
 
+gulp.task('build-vendor-css', function(){
+    return gulp.src([
+      'bower_components/angular-material-icons/angular-material-icons.css',
+      'bower_components/angular-material/angular-material.css'
+    ])
+    .pipe(concat('vendor.min.css'))
+    .pipe(cssmin())
+    .pipe(gulp.dest('dist/styles'));
+});
+
 gulp.task('default', function(done) {
-    return runSequence('clear', ['build-app-css'], done);
+    return runSequence('clear', ['build-app-css', 'build-vendor-css'], done);
 });
