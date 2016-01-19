@@ -29,7 +29,14 @@ gulp.task('private:build-vendor-css', function(){
 });
 
 gulp.task('default', function(done) {
-
+    console.log('');
+    console.log('Please execute one of the following public tasks');
+    console.log(' - clear: cleans up the dist folder');
+    console.log(' - build: build the app');
+    console.log('');
+    console.log('Start build using ./node_modules/.bin/gulp build');
+    console.log('');
+    done();
 });
 
 gulp.task('build', function(done){
