@@ -11,14 +11,14 @@ gulp.task('clear', function(done) {
     done();
 });
 
-gulp.task('build-app-css', function() {
+gulp.task('private:build-app-css', function() {
     return gulp.src('src/styles/**/*.css')
         .pipe(concat('app.min.css'))
         .pipe(cssmin())
         .pipe(gulp.dest('dist/styles'));
 });
 
-gulp.task('build-vendor-css', function(){
+gulp.task('private:build-vendor-css', function(){
     return gulp.src([
       'bower_components/angular-material-icons/angular-material-icons.css',
       'bower_components/angular-material/angular-material.css'
@@ -29,5 +29,5 @@ gulp.task('build-vendor-css', function(){
 });
 
 gulp.task('default', function(done) {
-    return runSequence('clear', ['build-app-css', 'build-vendor-css'], done);
+    return runSequence('clear', ['private:build-app-css', 'private:build-vendor-css'], done);
 });
