@@ -3,29 +3,27 @@ var gulp = require('gulp'),
     cssmin = require('gulp-cssmin'),
     del = require('del'),
     runSequence = require('run-sequence');
+    config = require('./gulp.config');
 
 gulp.task('clear', function(done) {
-    del.sync('dist/**/*', {
+    del.sync(config.files.allDistFiles, {
         force: true
     });
     done();
 });
 
 gulp.task('private:build-app-css', function() {
-    return gulp.src('src/styles/**/*.css')
-        .pipe(concat('app.min.css'))
+    return gulp.src(config.files.allStyles)
+        .pipe(concat(config.files.appMinCss))
         .pipe(cssmin())
-        .pipe(gulp.dest('dist/styles'));
+        .pipe(gulp.dest(config.folders.dist.styles));
 });
 
 gulp.task('private:build-vendor-css', function(){
-    return gulp.src([
-      'bower_components/angular-material-icons/angular-material-icons.css',
-      'bower_components/angular-material/angular-material.css'
-    ])
-    .pipe(concat('vendor.min.css'))
+    return gulp.src(config.files.allVendorStyles)
+    .pipe(concat(config.files.vendorMinCss))
     .pipe(cssmin())
-    .pipe(gulp.dest('dist/styles'));
+    .pipe(gulp.dest(config.folders.dist.styles));
 });
 
 gulp.task('default', function(done) {
