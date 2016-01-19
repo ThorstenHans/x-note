@@ -4,13 +4,12 @@
   "description": "",
   "main": "gulpfile.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "./node_modules/.bin/gulp default"
   },
   "author": "Thorsten Hans <thorsten.hans@gmail.com> (http://www.xplatform.rocks)",
   "license": "MIT",
   "devDependencies": {
     "gulp": "^3.9.0",
-    "gulp-less": "^3.0.3",
-    "xplatform-build": "file:../xplatform-build"
+    "gulp-less": "^3.0.3"
   }
 }
