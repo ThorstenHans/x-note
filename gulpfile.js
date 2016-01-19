@@ -29,5 +29,9 @@ gulp.task('private:build-vendor-css', function(){
 });
 
 gulp.task('default', function(done) {
-    return runSequence('clear', ['private:build-app-css', 'private:build-vendor-css'], done);
+
+});
+
+gulp.task('build', function(done){
+  return runSequence('clear', ['private:build-app-css', 'private:build-vendor-css'], done);
 });
