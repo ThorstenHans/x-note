@@ -2,6 +2,7 @@ var path = require('path');
 
 module.exports = {
     folders: {
+        gulptasks: path.join('.','gulptasks'),
         dist: {
             root: path.join('.', 'dist'),
             styles: path.join('.', 'dist', 'styles')
