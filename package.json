@@ -9,6 +9,6 @@
   "author": "Thorsten Hans <thorsten.hans@gmail.com> (http://www.xplatform.rocks)",
   "license": "MIT",
   "devDependencies": {
-    "live-server": "^0.9.0",
+    "live-server": "^0.9.0"
   }
 }
